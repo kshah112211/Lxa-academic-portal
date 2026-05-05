@@ -5,84 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LXA Academic Portal</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@400;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Lato', sans-serif; background-color: #f8f9fa; color: #333; }
+        body { font-family: 'Lato', sans-serif; background: #f8f9fa; color: #333; }
         :root { --lxa-purple: #5B2D8E; --lxa-gold: #C9A84C; --lxa-dark: #1a0a2e; }
         .portal { max-width: 900px; margin: 0 auto; padding-bottom: 2rem; }
-        .header { background: var(--lxa-dark); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; border-bottom: 3px solid var(--lxa-gold); }
-        .header-crest { width: 70px; height: auto; }
+        .header { background: var(--lxa-dark); padding: 1.5rem; display: flex; align-items: center; gap: 1rem; border-bottom: 3px solid var(--lxa-gold); }
         .header-title { font-family: 'Cinzel', serif; font-size: 18px; color: #fff; }
         .header-letters { margin-left: auto; color: var(--lxa-gold); font-family: 'Cinzel', serif; font-size: 24px; }
-        .tab-bar { display: flex; background: #12071f; border-bottom: 1px solid rgba(201, 168, 76, 0.3); }
-        .tab { flex: 1; padding: 12px; font-family: 'Cinzel', serif; font-size: 12px; color: rgba(255, 255, 255, 0.5); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; }
+        .tab-bar { display: flex; background: #12071f; }
+        .tab { flex: 1; padding: 15px; font-family: 'Cinzel', serif; font-size: 12px; color: rgba(255,255,255,0.5); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; }
         .tab.active { color: var(--lxa-gold); border-bottom-color: var(--lxa-gold); }
         .content { padding: 1.5rem; }
-        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; margin-bottom: 15px; }
-        .section-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--lxa-purple); margin-bottom: 8px; font-weight: 600; }
-        .fg { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; flex: 1; }
-        .fg label { font-size: 11px; color: #666; font-weight: 700; }
-        input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
-        .btn { padding: 10px 20px; border-radius: 4px; border: none; cursor: pointer; font-weight: 700; }
+        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; }
+        .fg { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+        .fg label { font-size: 11px; font-weight: 700; color: #666; }
+        input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
+        .btn { padding: 10px 20px; border-radius: 4px; border: none; cursor: pointer; font-weight: 700; transition: 0.2s; }
         .btn-primary { background: var(--lxa-purple); color: white; }
         .btn-gold { background: var(--lxa-gold); color: var(--lxa-dark); width: 100%; font-family: 'Cinzel', serif; margin-top: 10px; }
-        .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin: 4px 2px; }
-        .pill-green { background: #e1f5ee; color: #085041; }
-        .pill-purple { background: #ede8f7; color: #3c3489; }
-        .list-item { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        @media(max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+        .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin: 4px 2px; background: #ede8f7; color: #3c3489; }
+        .list-item { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="portal">
     <div class="header">
-        <img class="header-crest" src="crest.png" alt="ΛΧΑ" onerror="this.style.display='none'">
-        <div>
-            <div class="header-title">Lambda Chi Alpha</div>
-            <div class="header-sub" style="color:var(--lxa-gold); font-size:10px;">Academic Portal</div>
-        </div>
+        <div class="header-title">Lambda Chi Alpha <br><small style="font-size:10px; color:var(--lxa-gold)">Beta Upsilon Portal</small></div>
         <div class="header-letters">ΛΧΑ</div>
     </div>
 
     <div class="tab-bar">
-        <button id="tab-materials" class="tab active" onclick="switchTab('materials')">Exchange</button>
-        <button id="tab-schedule" class="tab" onclick="switchTab('schedule')">Schedules</button>
-        <button id="tab-admin" class="tab" onclick="switchTab('admin')">Admin</button>
+        <button id="btn-mat-tab" class="tab active" onclick="switchTab('materials')">Exchange</button>
+        <button id="btn-sch-tab" class="tab" onclick="switchTab('schedule')">Schedules</button>
+        <button id="btn-adm-tab" class="tab" onclick="switchTab('admin')">Admin</button>
     </div>
 
     <div id="view-materials" class="content">
+        <div class="card"><div class="fg"><label>FULL NAME</label><input type="text" id="mat-name"></div></div>
         <div class="card">
-            <div class="fg"><label>Full Name</label><input type="text" id="mat-name" placeholder="John Doe"></div>
-        </div>
-        <div class="two-col">
-            <div class="card">
-                <div class="section-label">I Have</div>
-                <div style="display:flex; gap:5px;"><input type="text" id="have-input"><button class="btn btn-primary" onclick="addItem('have')">Add</button></div>
-                <div id="have-list"></div>
+            <div style="display:flex; gap:10px; margin-bottom:10px;">
+                <input type="text" id="have-input" placeholder="Course I HAVE">
+                <button class="btn btn-primary" onclick="addItem('have')">Add</button>
             </div>
-            <div class="card">
-                <div class="section-label">I Need</div>
-                <div style="display:flex; gap:5px;"><input type="text" id="need-input"><button class="btn btn-primary" onclick="addItem('need')">Add</button></div>
-                <div id="need-list"></div>
-            </div>
+            <div id="have-list"></div>
         </div>
-        <button class="btn btn-gold" id="btn-mat" onclick="submitMaterials()">Submit Materials</button>
+        <div class="card">
+            <div style="display:flex; gap:10px; margin-bottom:10px;">
+                <input type="text" id="need-input" placeholder="Course I NEED">
+                <button class="btn btn-primary" onclick="addItem('need')">Add</button>
+            </div>
+            <div id="need-list"></div>
+        </div>
+        <button class="btn btn-gold" id="final-mat-btn" onclick="submitMaterials()">Submit to Sheet</button>
     </div>
 
     <div id="view-schedule" class="content" style="display:none;">
+        <div class="card"><div class="fg"><label>FULL NAME</label><input type="text" id="sched-name"></div></div>
         <div class="card">
-            <div class="fg"><label>Full Name</label><input type="text" id="sched-name"></div>
-            <div class="two-col">
-                <div class="fg"><label>Course</label><input type="text" id="in-course"></div>
-                <div class="fg"><label>Section</label><input type="text" id="in-section"></div>
-            </div>
-            <div class="fg"><label>Professor</label><input type="text" id="in-prof"></div>
-            <button class="btn btn-primary" onclick="addItem('class')">Add Class</button>
-            <div id="class-list"></div>
+            <div class="fg"><label>COURSE</label><input type="text" id="in-course"></div>
+            <div class="fg"><label>SECTION</label><input type="text" id="in-section"></div>
+            <div class="fg"><label>PROFESSOR</label><input type="text" id="in-prof"></div>
+            <button class="btn btn-primary" onclick="addItem('class')">Add to List</button>
+            <div id="class-list" style="margin-top:10px;"></div>
         </div>
-        <button class="btn btn-gold" id="btn-sched" onclick="submitSchedule()">Upload Schedule</button>
+        <button class="btn btn-gold" id="final-sch-btn" onclick="submitSchedule()">Upload Schedule</button>
     </div>
 
     <div id="view-admin" class="content" style="display:none;">
@@ -100,52 +88,42 @@
 
     let data = { have: [], need: [], classes: [] };
 
-    function switchTab(tabName) {
-        if (tabName === 'admin') {
-            if (prompt("Enter PIN:") !== "1909") return alert("Denied");
-        }
-        document.getElementById('view-materials').style.display = (tabName === 'materials') ? 'block' : 'none';
-        document.getElementById('view-schedule').style.display = (tabName === 'schedule') ? 'block' : 'none';
-        document.getElementById('view-admin').style.display = (tabName === 'admin') ? 'block' : 'none';
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('tab-' + tabName).classList.add('active');
+    function switchTab(t) {
+        if (t === 'admin' && prompt("PIN:") !== "1909") return;
+        document.getElementById('view-materials').style.display = (t === 'materials' ? 'block' : 'none');
+        document.getElementById('view-schedule').style.display = (t === 'schedule' ? 'block' : 'none');
+        document.getElementById('view-admin').style.display = (t === 'admin' ? 'block' : 'none');
+        document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+        if(t === 'materials') document.getElementById('btn-mat-tab').classList.add('active');
+        if(t === 'schedule') document.getElementById('btn-sch-tab').classList.add('active');
+        if(t === 'admin') document.getElementById('btn-adm-tab').classList.add('active');
     }
 
     function addItem(type) {
         if (type === 'have') {
             const val = document.getElementById('have-input').value.toUpperCase();
-            if (val) { data.have.push(val); renderList('have-list', data.have, 'pill-green'); }
+            if (val) { data.have.push(val); document.getElementById('have-list').innerHTML += `<span class="pill">${val}</span>`; }
             document.getElementById('have-input').value = '';
         } else if (type === 'need') {
             const val = document.getElementById('need-input').value.toUpperCase();
-            if (val) { data.need.push(val); renderList('need-list', data.need, 'pill-purple'); }
+            if (val) { data.need.push(val); document.getElementById('need-list').innerHTML += `<span class="pill">${val}</span>`; }
             document.getElementById('need-input').value = '';
         } else if (type === 'class') {
-            const course = document.getElementById('in-course').value.toUpperCase();
-            const section = document.getElementById('in-section').value;
-            const prof = document.getElementById('in-prof').value;
-            if (course && section && prof) {
-                data.classes.push({ course, section, prof });
-                renderClasses();
-                document.getElementById('in-course').value = '';
-                document.getElementById('in-section').value = '';
-                document.getElementById('in-prof').value = '';
+            const c = document.getElementById('in-course').value.toUpperCase();
+            const s = document.getElementById('in-section').value;
+            const p = document.getElementById('in-prof').value;
+            if (c && s && p) {
+                data.classes.push({ c, s, p });
+                document.getElementById('class-list').innerHTML += `<div class="list-item">${c} (${s}) - ${p}</div>`;
+                document.getElementById('in-course').value = ''; document.getElementById('in-section').value = ''; document.getElementById('in-prof').value = '';
             }
         }
     }
 
-    function renderList(id, arr, cls) {
-        document.getElementById(id).innerHTML = arr.map(item => `<span class="pill ${cls}">${item}</span>`).join('');
-    }
-
-    function renderClasses() {
-        document.getElementById('class-list').innerHTML = data.classes.map(c => `<div class="list-item"><span>${c.course} (${c.section}) - ${c.prof}</span></div>`).join('');
-    }
-
     async function submitMaterials() {
         const name = document.getElementById('mat-name').value;
-        const btn = document.getElementById('btn-mat');
-        btn.disabled = true; btn.innerText = "Syncing...";
+        if(!name) return alert("Name required");
+        document.getElementById('final-mat-btn').disabled = true;
         try {
             for (let item of data.have) {
                 await fetch(APIS.materials, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ material: { name, type: 'Have', course: item } })});
@@ -153,22 +131,20 @@
             for (let item of data.need) {
                 await fetch(APIS.materials, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ material: { name, type: 'Need', course: item } })});
             }
-            alert("Success!");
-            location.reload();
-        } catch (e) { alert("Error"); btn.disabled = false; }
+            alert("Success!"); location.reload();
+        } catch (e) { alert("Error"); document.getElementById('final-mat-btn').disabled = false; }
     }
 
     async function submitSchedule() {
         const name = document.getElementById('sched-name').value;
-        const btn = document.getElementById('btn-sched');
-        btn.disabled = true; btn.innerText = "Syncing...";
+        if(!name) return alert("Name required");
+        document.getElementById('final-sch-btn').disabled = true;
         try {
             for (let item of data.classes) {
-                await fetch(APIS.schedule, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ schedule: { name, course: item.course, section: item.section, professor: item.prof } })});
+                await fetch(APIS.schedule, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ schedule: { name, course: item.c, section: item.s, professor: item.p } })});
             }
-            alert("Success!");
-            location.reload();
-        } catch (e) { alert("Error"); btn.disabled = false; }
+            alert("Success!"); location.reload();
+        } catch (e) { alert("Error"); document.getElementById('final-sch-btn').disabled = false; }
     }
 </script>
 </body>
