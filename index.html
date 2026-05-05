@@ -7,156 +7,225 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Lato', sans-serif; background-color: #f8f9fa; }
-        :root { --lxa-purple: #5B2D8E; --lxa-gold: #C9A84C; --lxa-green: #1A6B3C; --lxa-light-purple: #EDE8F7; }
-        .portal { max-width: 900px; margin: 0 auto; padding: 0 0 2rem; }
-        .header { background: #1a0a2e; padding: 1.5rem 1.5rem 1rem; display: flex; align-items: center; gap: 1.25rem; border-bottom: 3px solid var(--lxa-gold); }
-        .header-crest { width: 70px; height: auto; flex-shrink: 0; }
-        .header-title { font-family: 'Cinzel', serif; font-size: 17px; font-weight: 600; color: #fff; letter-spacing: 0.04em; line-height: 1.3; }
-        .header-sub { font-family: 'Cinzel', serif; font-size: 11px; color: var(--lxa-gold); letter-spacing: 0.12em; margin-top: 3px; }
-        .header-letters { margin-left: auto; flex-shrink: 0; }
-        .header-letters img { height: 40px; width: auto; filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(220deg); }
+        body { font-family: 'Lato', sans-serif; background-color: #f8f9fa; color: #333; line-height: 1.5; }
+        :root { --lxa-purple: #5B2D8E; --lxa-gold: #C9A84C; --lxa-dark: #1a0a2e; }
+
+        /* Header & UI */
+        .portal { max-width: 900px; margin: 0 auto; padding-bottom: 2rem; }
+        .header { background: var(--lxa-dark); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; border-bottom: 3px solid var(--lxa-gold); }
+        .header-crest { width: 70px; height: auto; }
+        .header-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: #fff; letter-spacing: 0.05em; }
+        .header-sub { font-family: 'Cinzel', serif; font-size: 11px; color: var(--lxa-gold); letter-spacing: 0.12em; }
+        .header-letters { margin-left: auto; color: var(--lxa-gold); font-family: 'Cinzel', serif; font-size: 24px; }
+
         .tab-bar { display: flex; background: #12071f; border-bottom: 1px solid rgba(201, 168, 76, 0.3); }
-        .tab { flex: 1; padding: 11px 8px; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.5); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .tab { flex: 1; padding: 12px; font-family: 'Cinzel', serif; font-size: 12px; color: rgba(255, 255, 255, 0.5); border: none; background: none; cursor: pointer; transition: 0.2s; border-bottom: 2px solid transparent; }
         .tab.active { color: var(--lxa-gold); border-bottom-color: var(--lxa-gold); }
-        .content { padding: 1.25rem 1.25rem 0.5rem; }
-        .section-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.1em; color: var(--lxa-purple); margin-bottom: 6px; font-weight: 500; }
-        .card { background: white; border: 0.5px solid #ddd; border-radius: 8px; padding: 1.1rem 1.25rem; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .card-head { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 500; color: #333; margin-bottom: 10px; }
-        .form-row { display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; }
-        .fg { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 110px; }
-        .fg label { font-size: 11px; color: #666; letter-spacing: 0.04em; }
-        input { width: 100%; padding: 7px 10px; border: 0.5px solid #ccc; border-radius: 4px; font-size: 13px; }
-        .btn { padding: 8px 16px; border-radius: 4px; border: 0.5px solid #ccc; background: transparent; cursor: pointer; font-size: 13px; transition: all 0.15s; }
-        .btn-primary { background: #5B2D8E; color: #fff; border: none; font-weight: 700; }
-        .btn-gold { background: var(--lxa-gold); color: #1a0a2e; border: none; font-weight: 700; width: 100%; font-family: 'Cinzel', serif; letter-spacing: 0.05em; margin-top: 10px; }
-        .pill { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 99px; font-size: 11px; font-weight: 700; }
-        .pill-purple { background: #EDE8F7; color: #3C3489; }
-        .pill-green { background: #E1F5EE; color: #085041; }
-        .list-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 0.5px solid #eee; }
-        .msg-box { background: #eee; border-radius: 4px; padding: 12px; font-size: 12px; margin-top: 8px; white-space: pre-wrap; }
-        .status-bar { background: #1a0a2e; padding: 10px 1.25rem; display: flex; justify-content: space-between; margin-top: 20px; }
-        .status-text { font-size: 10px; color: rgba(255,255,255,0.4); font-family: 'Cinzel', serif; }
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        @media(max-width:520px){ .two-col { grid-template-columns: 1fr; } }
+
+        .content { padding: 1.5rem; }
+        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--lxa-purple); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; }
+        
+        /* Forms */
+        .fg { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; flex: 1; }
+        .fg label { font-size: 11px; color: #666; font-weight: 700; }
+        input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; width: 100%; }
+        .btn { padding: 10px 20px; border-radius: 4px; border: none; cursor: pointer; font-weight: 700; font-size: 13px; transition: 0.2s; }
+        .btn-primary { background: var(--lxa-purple); color: white; }
+        .btn-gold { background: var(--lxa-gold); color: var(--lxa-dark); width: 100%; font-family: 'Cinzel', serif; margin-top: 10px; }
+        
+        /* Lists & Pills */
+        .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin: 4px 2px; }
+        .pill-green { background: #e1f5ee; color: #085041; }
+        .pill-purple { background: #ede8f7; color: #3c3489; }
+        .list-item { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+
+        .status-bar { background: var(--lxa-dark); padding: 12px 1.5rem; display: flex; justify-content: space-between; color: rgba(255,255,255,0.4); font-size: 10px; font-family: 'Cinzel', serif; margin-top: 20px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media(max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="portal">
     <div class="header">
-        <img class="header-crest" src="crest.png" alt="ΛΧΑ Crest" onerror="this.style.display='none'" />
-        <div class="header-text">
+        <img class="header-crest" src="crest.png" alt="ΛΧΑ" onerror="this.style.display='none'">
+        <div>
             <div class="header-title">Lambda Chi Alpha</div>
-            <div class="header-sub">Beta Upsilon Chapter — Academic Portal</div>
+            <div class="header-sub">Beta Upsilon — Academic Portal</div>
         </div>
-        <div class="header-letters">
-            <img src="letters.webp" alt="ΛΧΑ" onerror="this.outerHTML='<span style=\'color:#9B6DD4; font-size:24px; font-family:Cinzel;\'>ΛΧΑ</span>'" />
-        </div>
+        <div class="header-letters">ΛΧΑ</div>
     </div>
 
     <div class="tab-bar">
-        <button class="tab active" onclick="switchTab('materials',this)">Material Exchange</button>
-        <button class="tab" onclick="switchTab('schedule',this)">Class Schedules</button>
-        <button class="tab" onclick="switchTab('admin',this)">Admin Dashboard</button>
+        <button id="tab-materials" class="tab active" onclick="switchTab('materials')">Exchange</button>
+        <button id="tab-schedule" class="tab" onclick="switchTab('schedule')">Schedules</button>
+        <button id="tab-admin" class="tab" onclick="switchTab('admin')">Admin</button>
     </div>
 
     <div id="view-materials" class="content">
-        <div class="section-label">Your information</div>
+        <div class="section-label">Member Info</div>
         <div class="card">
-            <div class="fg"><label>Full name</label><input id="s-name" type="text" placeholder="First Last" /></div>
+            <div class="fg"><label>Full Name</label><input type="text" id="mat-name" placeholder="John Doe"></div>
         </div>
         <div class="two-col">
             <div class="card">
-                <div class="card-head">Material I have</div>
-                <div class="form-row">
-                    <div class="fg"><input id="have-input" type="text" placeholder="ACCT 2121" /></div>
+                <div class="section-label">I Have (Textbooks/Notes)</div>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="have-input" placeholder="e.g. ACCT 2121">
                     <button class="btn btn-primary" onclick="addItem('have')">Add</button>
                 </div>
-                <div id="have-list"></div>
+                <div id="have-list" style="margin-top:10px;"></div>
             </div>
             <div class="card">
-                <div class="card-head">Material I need</div>
-                <div class="form-row">
-                    <div class="fg"><input id="need-input" type="text" placeholder="ACCT 2122" /></div>
+                <div class="section-label">I Need</div>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="need-input" placeholder="e.g. ECON 1101">
                     <button class="btn btn-primary" onclick="addItem('need')">Add</button>
                 </div>
-                <div id="need-list"></div>
+                <div id="need-list" style="margin-top:10px;"></div>
             </div>
         </div>
-        <button id="btn-mat" class="btn btn-gold" onclick="submitMaterials()">Submit Materials</button>
+        <button class="btn btn-gold" id="btn-mat" onclick="submitMaterials()">Submit to Database</button>
     </div>
 
     <div id="view-schedule" class="content" style="display:none;">
-        <div class="section-label">Your information</div>
+        <div class="section-label">Member Info</div>
         <div class="card">
-            <div class="fg"><label>Full name</label><input id="s-name-sched" type="text" placeholder="First Last" /></div>
+            <div class="fg"><label>Full Name</label><input type="text" id="sched-name" placeholder="John Doe"></div>
         </div>
         <div class="card">
-            <div class="card-head">Add a class</div>
-            <div class="form-row">
-                <div class="fg"><label>Course</label><input id="sched-course" type="text" placeholder="ACCT 2121" /></div>
-                <div class="fg"><label>Section</label><input id="sched-section" type="text" placeholder="001" /></div>
-                <div class="fg"><label>Professor</label><input id="sched-prof" type="text" placeholder="Smith" /></div>
-                <button class="btn btn-primary" onclick="addItem('class')">Add</button>
+            <div class="section-label">Add Your Classes</div>
+            <div class="two-col">
+                <div class="fg"><label>Course Code</label><input type="text" id="in-course" placeholder="MATH 1241"></div>
+                <div class="fg"><label>Section</label><input type="text" id="in-section" placeholder="001"></div>
             </div>
-            <div id="class-list"></div>
+            <div class="fg"><label>Professor Last Name</label><input type="text" id="in-prof" placeholder="Smith"></div>
+            <button class="btn btn-primary" style="width:100%" onclick="addItem('class')">Add Class to List</button>
+            <div id="class-list" style="margin-top:15px;"></div>
         </div>
-        <button id="btn-sched" class="btn btn-gold" onclick="submitSchedule()">Submit Schedule</button>
+        <button class="btn btn-gold" id="btn-sched" onclick="submitSchedule()">Upload Schedule</button>
     </div>
 
     <div id="view-admin" class="content" style="display:none;">
-        <div class="card">
-            <div class="card-head">Admin Controls</div>
-            <p style="font-size: 12px; margin-bottom: 15px; color: #555;">Data is synced directly to the Google Sheet.</p>
-            <button class="btn btn-primary" style="width:100%;" onclick="window.open('https://docs.google.com/spreadsheets/d/1Xnf9lvaZ54NUUhHsy6j9Y8-rrjm6fx1Bhdnc2LE5IrQ/edit')">Open Master Google Sheet</button>
+        <div class="card" style="text-align:center;">
+            <div class="section-label">High Sigma Access</div>
+            <p style="font-size:13px; margin: 15px 0;">Access the master spreadsheet to match brothers.</p>
+            <button class="btn btn-primary" onclick="window.open('https://docs.google.com/spreadsheets/d/1Xnf9lvaZ54NUUhHsy6j9Y8-rrjm6fx1Bhdnc2LE5IrQ/')">Open Google Sheet</button>
         </div>
-        <div id="admin-data" class="msg-box">High Sigma authenticated. Accessing Chapter Database...</div>
     </div>
 
     <div class="status-bar">
-        <span class="status-text">Per Crucem Crescens · Vir Quisque Vir</span>
-        <span class="status-text">Made by Krish Shah · High Sigma</span>
+        <span>Per Crucem Crescens</span>
+        <span>High Sigma Portal v1.2</span>
     </div>
 </div>
 
 <script>
-const MATERIALS_API = "https://api.sheety.co/ba5ed5e4b7addfcc061e451611743293/untitledSpreadsheet/materials"; 
-const SCHEDULES_API = "https://api.sheety.co/ba5ed5e4b7addfcc061e451611743293/untitledSpreadsheet/schedule";
+    // API Configuration
+    const APIS = {
+        materials: "https://api.sheety.co/ba5ed5e4b7addfcc061e451611743293/untitledSpreadsheet/materials",
+        schedule: "https://api.sheety.co/ba5ed5e4b7addfcc061e451611743293/untitledSpreadsheet/schedule"
+    };
 
-let tempHave = [], tempNeed = [], tempClasses = [];
+    let data = { have: [], need: [], classes: [] };
 
-function switchTab(t, btn) {
-    if (t === 'admin') {
-        const pin = prompt("Enter High Sigma PIN:");
-        if (pin !== "1909") {
-            alert("Unauthorized");
-            return;
+    function switchTab(tabName) {
+        if (tabName === 'admin') {
+            const pin = prompt("Enter High Sigma PIN:");
+            if (pin !== "1909") return alert("Unauthorized access.");
+        }
+
+        // Toggle Views
+        document.getElementById('view-materials').style.display = (tabName === 'materials') ? 'block' : 'none';
+        document.getElementById('view-schedule').style.display = (tabName === 'schedule') ? 'block' : 'none';
+        document.getElementById('view-admin').style.display = (tabName === 'admin') ? 'block' : 'none';
+
+        // Toggle Buttons
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('tab-' + tabName).classList.add('active');
+    }
+
+    function addItem(type) {
+        if (type === 'have') {
+            const val = document.getElementById('have-input').value.trim().toUpperCase();
+            if (val) { data.have.push(val); renderList('have-list', data.have, 'pill-green'); }
+            document.getElementById('have-input').value = '';
+        } else if (type === 'need') {
+            const val = document.getElementById('need-input').value.trim().toUpperCase();
+            if (val) { data.need.push(val); renderList('need-list', data.need, 'pill-purple'); }
+            document.getElementById('need-input').value = '';
+        } else if (type === 'class') {
+            const course = document.getElementById('in-course').value.trim().toUpperCase();
+            const section = document.getElementById('in-section').value.trim();
+            const prof = document.getElementById('in-prof').value.trim();
+            if (course && section && prof) {
+                data.classes.push({ course, section, prof });
+                renderClasses();
+                document.getElementById('in-course').value = '';
+                document.getElementById('in-section').value = '';
+                document.getElementById('in-prof').value = '';
+            }
         }
     }
-    
-    document.getElementById('view-materials').style.display = 'none';
-    document.getElementById('view-schedule').style.display = 'none';
-    document.getElementById('view-admin').style.display = 'none';
-    
-    document.getElementById('view-' + t).style.display = 'block';
-    
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-}
 
-function addItem(type) {
-    if (type === 'have') {
-        const val = document.getElementById('have-input').value.toUpperCase();
-        if (val) {
-            tempHave.push(val);
-            render('have-list', tempHave, 'pill-green');
-        }
-        document.getElementById('have-input').value = '';
-    } else if (type === 'need') {
-        const val = document.getElementById('need-input').value.toUpperCase();
-        if (val) {
-            tempNeed.push(val);
-            render('need-list', tempNeed, 'pill-purple');
-        }
-        document.getElementById('need-input').value = '';
+    function renderList(id, arr, cls) {
+        document.getElementById(id).innerHTML = arr.map(item => `<span class="pill ${cls}">${item}</span>`).join('');
+    }
+
+    function renderClasses() {
+        document.getElementById('class-list').innerHTML = data.classes.map(c => 
+            `<div class="list-item"><span><b>${c.course}</b> - Sec: ${c.section} (${c.prof})</span></div>`
+        ).join('');
+    }
+
+    async function submitMaterials() {
+        const name = document.getElementById('mat-name').value.trim();
+        if (!name || (data.have.length === 0 && data.need.length === 0)) return alert("Enter name and at least one item.");
+        
+        const btn = document.getElementById('btn-mat');
+        btn.disabled = true; btn.innerText = "Syncing...";
+
+        try {
+            for (let item of data.have) {
+                await fetch(APIS.materials, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ material: { name, type: 'Have', course: item } })
+                });
+            }
+            for (let item of data.need) {
+                await fetch(APIS.materials, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ material: { name, type: 'Need', course: item } })
+                });
+            }
+            alert("Materials synced successfully!");
+            location.reload();
+        } catch (e) { alert("Error connecting to sheet."); btn.disabled = false; }
+    }
+
+    async function submitSchedule() {
+        const name = document.getElementById('sched-name').value.trim();
+        if (!name || data.classes.length === 0) return alert("Enter name and add your classes.");
+
+        const btn = document.getElementById('btn-sched');
+        btn.disabled = true; btn.innerText = "Syncing...";
+
+        try {
+            for (let item of data.classes) {
+                await fetch(APIS.schedule, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ schedule: { name, course: item.course, section: item.section, professor: item.prof } })
+                });
+            }
+            alert("Schedule uploaded!");
+            location.reload();
+        } catch (e) { alert("Error connecting to sheet."); btn.disabled = false; }
+    }
+</script>
+
+</body>
+</html>
