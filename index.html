@@ -7,40 +7,29 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Lato', sans-serif; background-color: #f8f9fa; color: #333; line-height: 1.5; }
+        body { font-family: 'Lato', sans-serif; background-color: #f8f9fa; color: #333; }
         :root { --lxa-purple: #5B2D8E; --lxa-gold: #C9A84C; --lxa-dark: #1a0a2e; }
-
-        /* Header & UI */
         .portal { max-width: 900px; margin: 0 auto; padding-bottom: 2rem; }
         .header { background: var(--lxa-dark); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem; border-bottom: 3px solid var(--lxa-gold); }
         .header-crest { width: 70px; height: auto; }
-        .header-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: #fff; letter-spacing: 0.05em; }
-        .header-sub { font-family: 'Cinzel', serif; font-size: 11px; color: var(--lxa-gold); letter-spacing: 0.12em; }
+        .header-title { font-family: 'Cinzel', serif; font-size: 18px; color: #fff; }
         .header-letters { margin-left: auto; color: var(--lxa-gold); font-family: 'Cinzel', serif; font-size: 24px; }
-
         .tab-bar { display: flex; background: #12071f; border-bottom: 1px solid rgba(201, 168, 76, 0.3); }
-        .tab { flex: 1; padding: 12px; font-family: 'Cinzel', serif; font-size: 12px; color: rgba(255, 255, 255, 0.5); border: none; background: none; cursor: pointer; transition: 0.2s; border-bottom: 2px solid transparent; }
+        .tab { flex: 1; padding: 12px; font-family: 'Cinzel', serif; font-size: 12px; color: rgba(255, 255, 255, 0.5); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; }
         .tab.active { color: var(--lxa-gold); border-bottom-color: var(--lxa-gold); }
-
         .content { padding: 1.5rem; }
-        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .section-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--lxa-purple); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; }
-        
-        /* Forms */
+        .card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; margin-bottom: 15px; }
+        .section-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--lxa-purple); margin-bottom: 8px; font-weight: 600; }
         .fg { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; flex: 1; }
         .fg label { font-size: 11px; color: #666; font-weight: 700; }
-        input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; width: 100%; }
-        .btn { padding: 10px 20px; border-radius: 4px; border: none; cursor: pointer; font-weight: 700; font-size: 13px; transition: 0.2s; }
+        input { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
+        .btn { padding: 10px 20px; border-radius: 4px; border: none; cursor: pointer; font-weight: 700; }
         .btn-primary { background: var(--lxa-purple); color: white; }
         .btn-gold { background: var(--lxa-gold); color: var(--lxa-dark); width: 100%; font-family: 'Cinzel', serif; margin-top: 10px; }
-        
-        /* Lists & Pills */
         .pill { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin: 4px 2px; }
         .pill-green { background: #e1f5ee; color: #085041; }
         .pill-purple { background: #ede8f7; color: #3c3489; }
-        .list-item { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-
-        .status-bar { background: var(--lxa-dark); padding: 12px 1.5rem; display: flex; justify-content: space-between; color: rgba(255,255,255,0.4); font-size: 10px; font-family: 'Cinzel', serif; margin-top: 20px; }
+        .list-item { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media(max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
     </style>
@@ -52,7 +41,7 @@
         <img class="header-crest" src="crest.png" alt="ΛΧΑ" onerror="this.style.display='none'">
         <div>
             <div class="header-title">Lambda Chi Alpha</div>
-            <div class="header-sub">Beta Upsilon — Academic Portal</div>
+            <div class="header-sub" style="color:var(--lxa-gold); font-size:10px;">Academic Portal</div>
         </div>
         <div class="header-letters">ΛΧΑ</div>
     </div>
@@ -64,65 +53,46 @@
     </div>
 
     <div id="view-materials" class="content">
-        <div class="section-label">Member Info</div>
         <div class="card">
             <div class="fg"><label>Full Name</label><input type="text" id="mat-name" placeholder="John Doe"></div>
         </div>
         <div class="two-col">
             <div class="card">
-                <div class="section-label">I Have (Textbooks/Notes)</div>
-                <div style="display:flex; gap:5px;">
-                    <input type="text" id="have-input" placeholder="e.g. ACCT 2121">
-                    <button class="btn btn-primary" onclick="addItem('have')">Add</button>
-                </div>
-                <div id="have-list" style="margin-top:10px;"></div>
+                <div class="section-label">I Have</div>
+                <div style="display:flex; gap:5px;"><input type="text" id="have-input"><button class="btn btn-primary" onclick="addItem('have')">Add</button></div>
+                <div id="have-list"></div>
             </div>
             <div class="card">
                 <div class="section-label">I Need</div>
-                <div style="display:flex; gap:5px;">
-                    <input type="text" id="need-input" placeholder="e.g. ECON 1101">
-                    <button class="btn btn-primary" onclick="addItem('need')">Add</button>
-                </div>
-                <div id="need-list" style="margin-top:10px;"></div>
+                <div style="display:flex; gap:5px;"><input type="text" id="need-input"><button class="btn btn-primary" onclick="addItem('need')">Add</button></div>
+                <div id="need-list"></div>
             </div>
         </div>
-        <button class="btn btn-gold" id="btn-mat" onclick="submitMaterials()">Submit to Database</button>
+        <button class="btn btn-gold" id="btn-mat" onclick="submitMaterials()">Submit Materials</button>
     </div>
 
     <div id="view-schedule" class="content" style="display:none;">
-        <div class="section-label">Member Info</div>
         <div class="card">
-            <div class="fg"><label>Full Name</label><input type="text" id="sched-name" placeholder="John Doe"></div>
-        </div>
-        <div class="card">
-            <div class="section-label">Add Your Classes</div>
+            <div class="fg"><label>Full Name</label><input type="text" id="sched-name"></div>
             <div class="two-col">
-                <div class="fg"><label>Course Code</label><input type="text" id="in-course" placeholder="MATH 1241"></div>
-                <div class="fg"><label>Section</label><input type="text" id="in-section" placeholder="001"></div>
+                <div class="fg"><label>Course</label><input type="text" id="in-course"></div>
+                <div class="fg"><label>Section</label><input type="text" id="in-section"></div>
             </div>
-            <div class="fg"><label>Professor Last Name</label><input type="text" id="in-prof" placeholder="Smith"></div>
-            <button class="btn btn-primary" style="width:100%" onclick="addItem('class')">Add Class to List</button>
-            <div id="class-list" style="margin-top:15px;"></div>
+            <div class="fg"><label>Professor</label><input type="text" id="in-prof"></div>
+            <button class="btn btn-primary" onclick="addItem('class')">Add Class</button>
+            <div id="class-list"></div>
         </div>
         <button class="btn btn-gold" id="btn-sched" onclick="submitSchedule()">Upload Schedule</button>
     </div>
 
     <div id="view-admin" class="content" style="display:none;">
         <div class="card" style="text-align:center;">
-            <div class="section-label">High Sigma Access</div>
-            <p style="font-size:13px; margin: 15px 0;">Access the master spreadsheet to match brothers.</p>
-            <button class="btn btn-primary" onclick="window.open('https://docs.google.com/spreadsheets/d/1Xnf9lvaZ54NUUhHsy6j9Y8-rrjm6fx1Bhdnc2LE5IrQ/')">Open Google Sheet</button>
+            <button class="btn btn-primary" onclick="window.open('https://docs.google.com/spreadsheets/d/1Xnf9lvaZ54NUUhHsy6j9Y8-rrjm6fx1Bhdnc2LE5IrQ/')">Open Master Sheet</button>
         </div>
-    </div>
-
-    <div class="status-bar">
-        <span>Per Crucem Crescens</span>
-        <span>High Sigma Portal v1.2</span>
     </div>
 </div>
 
 <script>
-    // API Configuration
     const APIS = {
         materials: "https://api.sheety.co/ba5ed5e4b7addfcc061e451611743293/untitledSpreadsheet/materials",
         schedule: "https://api.sheety.co/ba5ed5e4b7addfcc061e451611743293/untitledSpreadsheet/schedule"
@@ -132,33 +102,28 @@
 
     function switchTab(tabName) {
         if (tabName === 'admin') {
-            const pin = prompt("Enter High Sigma PIN:");
-            if (pin !== "1909") return alert("Unauthorized access.");
+            if (prompt("Enter PIN:") !== "1909") return alert("Denied");
         }
-
-        // Toggle Views
         document.getElementById('view-materials').style.display = (tabName === 'materials') ? 'block' : 'none';
         document.getElementById('view-schedule').style.display = (tabName === 'schedule') ? 'block' : 'none';
         document.getElementById('view-admin').style.display = (tabName === 'admin') ? 'block' : 'none';
-
-        // Toggle Buttons
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.getElementById('tab-' + tabName).classList.add('active');
     }
 
     function addItem(type) {
         if (type === 'have') {
-            const val = document.getElementById('have-input').value.trim().toUpperCase();
+            const val = document.getElementById('have-input').value.toUpperCase();
             if (val) { data.have.push(val); renderList('have-list', data.have, 'pill-green'); }
             document.getElementById('have-input').value = '';
         } else if (type === 'need') {
-            const val = document.getElementById('need-input').value.trim().toUpperCase();
+            const val = document.getElementById('need-input').value.toUpperCase();
             if (val) { data.need.push(val); renderList('need-list', data.need, 'pill-purple'); }
             document.getElementById('need-input').value = '';
         } else if (type === 'class') {
-            const course = document.getElementById('in-course').value.trim().toUpperCase();
-            const section = document.getElementById('in-section').value.trim();
-            const prof = document.getElementById('in-prof').value.trim();
+            const course = document.getElementById('in-course').value.toUpperCase();
+            const section = document.getElementById('in-section').value;
+            const prof = document.getElementById('in-prof').value;
             if (course && section && prof) {
                 data.classes.push({ course, section, prof });
                 renderClasses();
@@ -174,58 +139,37 @@
     }
 
     function renderClasses() {
-        document.getElementById('class-list').innerHTML = data.classes.map(c => 
-            `<div class="list-item"><span><b>${c.course}</b> - Sec: ${c.section} (${c.prof})</span></div>`
-        ).join('');
+        document.getElementById('class-list').innerHTML = data.classes.map(c => `<div class="list-item"><span>${c.course} (${c.section}) - ${c.prof}</span></div>`).join('');
     }
 
     async function submitMaterials() {
-        const name = document.getElementById('mat-name').value.trim();
-        if (!name || (data.have.length === 0 && data.need.length === 0)) return alert("Enter name and at least one item.");
-        
+        const name = document.getElementById('mat-name').value;
         const btn = document.getElementById('btn-mat');
         btn.disabled = true; btn.innerText = "Syncing...";
-
         try {
             for (let item of data.have) {
-                await fetch(APIS.materials, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ material: { name, type: 'Have', course: item } })
-                });
+                await fetch(APIS.materials, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ material: { name, type: 'Have', course: item } })});
             }
             for (let item of data.need) {
-                await fetch(APIS.materials, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ material: { name, type: 'Need', course: item } })
-                });
+                await fetch(APIS.materials, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ material: { name, type: 'Need', course: item } })});
             }
-            alert("Materials synced successfully!");
+            alert("Success!");
             location.reload();
-        } catch (e) { alert("Error connecting to sheet."); btn.disabled = false; }
+        } catch (e) { alert("Error"); btn.disabled = false; }
     }
 
     async function submitSchedule() {
-        const name = document.getElementById('sched-name').value.trim();
-        if (!name || data.classes.length === 0) return alert("Enter name and add your classes.");
-
+        const name = document.getElementById('sched-name').value;
         const btn = document.getElementById('btn-sched');
         btn.disabled = true; btn.innerText = "Syncing...";
-
         try {
             for (let item of data.classes) {
-                await fetch(APIS.schedule, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ schedule: { name, course: item.course, section: item.section, professor: item.prof } })
-                });
+                await fetch(APIS.schedule, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ schedule: { name, course: item.course, section: item.section, professor: item.prof } })});
             }
-            alert("Schedule uploaded!");
+            alert("Success!");
             location.reload();
-        } catch (e) { alert("Error connecting to sheet."); btn.disabled = false; }
+        } catch (e) { alert("Error"); btn.disabled = false; }
     }
 </script>
-
 </body>
 </html>
