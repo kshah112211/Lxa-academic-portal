@@ -1,0 +1,415 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Lato:wght@300;400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lato',sans-serif;}
+:root{--lxa-purple:#5B2D8E;--lxa-gold:#C9A84C;--lxa-green:#1A6B3C;--lxa-light-purple:#EDE8F7;}
+.portal{max-width:900px;margin:0 auto;padding:0 0 2rem;}
+.header{background:#1a0a2e;padding:1.5rem 1.5rem 1rem;display:flex;align-items:center;gap:1.25rem;border-bottom:3px solid var(--lxa-gold);}
+.header-crest{width:70px;height:auto;flex-shrink:0;}
+.header-text{}
+.header-title{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:#fff;letter-spacing:0.04em;line-height:1.3;}
+.header-sub{font-family:'Cinzel',serif;font-size:11px;color:var(--lxa-gold);letter-spacing:0.12em;margin-top:3px;}
+.header-letters{margin-left:auto;flex-shrink:0;}
+.header-letters img{height:40px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(220deg);}
+.tab-bar{display:flex;background:#12071f;border-bottom:1px solid rgba(201,168,76,0.3);}
+.tab{flex:1;padding:11px 8px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.06em;color:rgba(255,255,255,0.5);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;}
+.tab.active{color:var(--lxa-gold);border-bottom-color:var(--lxa-gold);}
+.tab:hover:not(.active){color:rgba(255,255,255,0.8);}
+.content{padding:1.25rem 1.25rem 0.5rem;background:var(--color-background-primary);}
+.section-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--lxa-purple);margin-bottom:6px;font-weight:500;}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.1rem 1.25rem;margin-bottom:10px;}
+.card-head{font-family:'Cinzel',serif;font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px;}
+.form-row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;}
+.fg{display:flex;flex-direction:column;gap:4px;flex:1;min-width:110px;}
+.fg label{font-size:11px;color:var(--color-text-secondary);letter-spacing:0.04em;}
+input,select{width:100%;padding:7px 10px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);font-size:13px;font-family:'Lato',sans-serif;background:var(--color-background-primary);color:var(--color-text-primary);}
+input:focus,select:focus{outline:none;border-color:#5B2D8E;}
+.btn{padding:8px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;font-family:'Lato',sans-serif;color:var(--color-text-primary);white-space:nowrap;transition:all 0.15s;}
+.btn:hover{background:var(--color-background-secondary);}
+.btn-primary{background:#5B2D8E;color:#fff;border-color:transparent;font-weight:700;}
+.btn-primary:hover{background:#4a2475;}
+.btn-gold{background:var(--lxa-gold);color:#1a0a2e;border-color:transparent;font-weight:700;}
+.btn-gold:hover{background:#b8952e;}
+.btn-sm{padding:6px 12px;font-size:12px;}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:700;}
+.pill-purple{background:#EDE8F7;color:#3C3489;}
+.pill-green{background:#E1F5EE;color:#085041;}
+.pill-gold{background:#FAEEDA;color:#633806;}
+.pill-amber{background:#FAEEDA;color:#633806;}
+.tag{display:inline-block;padding:2px 7px;background:var(--color-background-secondary);border-radius:4px;font-size:11px;color:var(--color-text-secondary);margin:2px;}
+.list-item{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.list-item:last-child{border-bottom:none;}
+.avatar{width:30px;height:30px;border-radius:50%;background:#EDE8F7;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#3C3489;flex-shrink:0;}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--color-text-tertiary);font-size:15px;padding:2px 5px;border-radius:4px;}
+.del-btn:hover{background:var(--color-background-danger);color:var(--color-text-danger);}
+.group-hdr{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:7px 12px;margin-bottom:6px;font-size:12px;font-weight:700;color:var(--color-text-primary);display:flex;align-items:center;gap:8px;font-family:'Cinzel',serif;}
+.match-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.match-row:last-child{border-bottom:none;}
+.msg-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;font-size:12px;color:var(--color-text-primary);white-space:pre-wrap;margin-top:8px;line-height:1.7;font-family:'Lato',sans-serif;}
+.empty{text-align:center;padding:2rem;color:var(--color-text-tertiary);font-size:13px;}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:12px 0;}
+.status-bar{background:#1a0a2e;padding:6px 1.25rem;display:flex;align-items:center;justify-content:space-between;}
+.status-text{font-size:10px;color:rgba(255,255,255,0.4);font-family:'Cinzel',serif;letter-spacing:0.06em;}
+.toast{display:none;position:absolute;top:8px;right:12px;background:#1A6B3C;color:#fff;padding:6px 14px;border-radius:var(--border-radius-md);font-size:12px;font-weight:700;}
+.name-row{display:flex;gap:8px;margin-bottom:12px;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+@media(max-width:520px){.two-col{grid-template-columns:1fr;}}
+</style>
+
+<div class="header">
+  <img class="header-crest" src="crest.png" alt="ΛΧΑ Crest" onerror="this.style.display='none'" />
+  
+  <div class="header-text">
+    <div class="header-title">Lambda Chi Alpha</div>
+    <div class="header-sub">Beta Upsilon Chapter — Academic Portal</div>
+  </div>
+
+  <div class="header-letters">
+    <img src="letters.webp" alt="ΛΧΑ" style="height:40px; width:auto;" onerror="this.outerHTML='<span style=\'font-family:Cinzel,serif;font-size:24px;color:#9B6DD4;\'>ΛΧΑ</span>'" />
+  </div>
+</div>
+
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('materials',this)">Material Exchange</button>
+    <button class="tab" onclick="switchTab('schedule',this)">Class Schedules</button>
+    <button class="tab" onclick="switchTab('admin',this)">Admin Dashboard</button>
+  </div>
+
+  <div id="view-materials" class="content">
+    <div style="margin-bottom:14px;">
+      <div class="section-label">Your information</div>
+      <div class="name-row">
+        <div class="fg"><label>Full name</label><input id="s-name" type="text" placeholder="First Last" /></div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head">Material I have</div>
+        <div class="form-row" style="margin-bottom:10px;">
+          <div class="fg"><label>Course (e.g. ACCT 2121)</label><input id="have-input" type="text" placeholder="ACCT 2121" onkeydown="if(event.key==='Enter')addHave()" /></div>
+          <button class="btn btn-primary btn-sm" onclick="addHave()">Add</button>
+        </div>
+        <div id="have-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-head">Material I need</div>
+        <div class="form-row" style="margin-bottom:10px;">
+          <div class="fg"><label>Course (e.g. ACCT 2122)</label><input id="need-input" type="text" placeholder="ACCT 2122" onkeydown="if(event.key==='Enter')addNeed()" /></div>
+          <button class="btn btn-primary btn-sm" onclick="addNeed()">Add</button>
+        </div>
+        <div id="need-list"></div>
+      </div>
+    </div>
+    <button class="btn btn-gold" onclick="submitMaterials()" style="width:100%;font-family:'Cinzel',serif;letter-spacing:0.05em;">Submit Materials</button>
+    <div id="mat-success" style="display:none;" class="msg-box" style="margin-top:8px;"></div>
+  </div>
+
+  <div id="view-schedule" class="content" style="display:none;">
+    <div style="margin-bottom:14px;">
+      <div class="section-label">Your information</div>
+      <div class="name-row">
+        <div class="fg"><label>Full name</label><input id="s-name-sched" type="text" placeholder="First Last" /></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">Add a class</div>
+      <div class="form-row" style="margin-bottom:10px;">
+        <div class="fg" style="flex:2;"><label>Course name & number</label><input id="sched-course" type="text" placeholder="ACCT 2121" /></div>
+        <div class="fg" style="flex:1;"><label>Section</label><input id="sched-section" type="text" placeholder="002" /></div>
+        <div class="fg" style="flex:2;"><label>Professor last name</label><input id="sched-prof" type="text" placeholder="Smith" /></div>
+        <button class="btn btn-primary btn-sm" onclick="addClass()" style="margin-bottom:1px;">Add</button>
+      </div>
+      <div id="class-list"></div>
+    </div>
+    <button class="btn btn-gold" onclick="submitSchedule()" style="width:100%;font-family:'Cinzel',serif;letter-spacing:0.05em;">Submit Schedule</button>
+    <div id="sched-success" style="display:none;" class="msg-box"></div>
+  </div>
+
+  <div id="view-admin" class="content" style="display:none;">
+    <div class="tab-bar" style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);margin-bottom:14px;border:0.5px solid var(--color-border-tertiary);">
+      <button class="tab active" id="admin-tab-btn-exchange" onclick="switchAdminTab('exchange',this)" style="color:var(--color-text-secondary);font-size:11px;">Material Exchange</button>
+      <button class="tab" id="admin-tab-btn-schedules" onclick="switchAdminTab('schedules',this)" style="color:var(--color-text-secondary);font-size:11px;">Class Schedules</button>
+    </div>
+
+    <div id="admin-tab-exchange">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div class="card-head" style="margin-bottom:0;">Course matches</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-sm btn-primary" onclick="generateMessage()">Generate message</button>
+            <button class="btn btn-sm" onclick="loadAdminData()">Refresh</button>
+          </div>
+        </div>
+        <div id="admin-matches"><div class="empty">Loading...</div></div>
+      </div>
+      <div id="admin-msg-section" style="display:none;">
+        <div class="section-label">Message draft</div>
+        <div class="msg-box" id="admin-msg-text"></div>
+        <button class="btn btn-sm btn-gold" onclick="copyMsg()" style="margin-top:8px;">Copy message</button>
+      </div>
+    </div>
+
+    <div id="admin-tab-schedules" style="display:none;">
+      <button class="btn btn-sm" onclick="loadSchedules()" style="margin-bottom:12px;">Refresh schedules</button>
+      <div id="admin-schedule-groups"><div class="empty">Loading...</div></div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="status-text">Per Crucem Crescens · Vir Quisque Vir</span>
+    <span class="status-text">Made by Krish Shah · High Sigma · BY1155</span>
+  </div>
+</div>
+
+<script>
+const API = "https://api.anthropic.com/v1/messages";
+const STORAGE_KEY_MAT = "lxa_materials_v2";
+const STORAGE_KEY_SCHED = "lxa_schedules_v2";
+
+let tempHave=[], tempNeed=[], tempClasses=[];
+let localMaterials = {}, localSchedules = {};
+
+async function saveToStorage(key, data) {
+  try {
+    const resp = await fetch(API, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:100,
+        system:"You are a key-value store. When given JSON data with a 'action:set, key:X, value:Y', respond ONLY with the word 'saved'. When given 'action:get, key:X', respond ONLY with the stored value or 'null'.",
+        messages:[{role:"user",content:`action:set, key:${key}, value:${JSON.stringify(data)}`}]
+      })
+    });
+    window.storage && await window.storage.set(key, JSON.stringify(data));
+  } catch(e){}
+  try { localStorage.setItem(key, JSON.stringify(data)); } catch(e){}
+}
+
+async function loadFromStorage(key) {
+  try {
+    const result = await window.storage.get(key);
+    if(result && result.value) return JSON.parse(result.value);
+  } catch(e){}
+  try {
+    const ls = localStorage.getItem(key);
+    if(ls) return JSON.parse(ls);
+  } catch(e){}
+  return {};
+}
+
+async function init() {
+  localMaterials = await loadFromStorage(STORAGE_KEY_MAT);
+  localSchedules = await loadFromStorage(STORAGE_KEY_SCHED);
+}
+init();
+
+function switchTab(t, btn) {
+  ['materials','schedule','admin'].forEach(v => {
+    document.getElementById('view-'+v).style.display = v===t ? '' : 'none';
+  });
+  document.querySelectorAll('.tab-bar:first-of-type .tab').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(t==='admin') loadAdminData();
+}
+
+function switchAdminTab(t, btn) {
+  document.getElementById('admin-tab-exchange').style.display = t==='exchange' ? '' : 'none';
+  document.getElementById('admin-tab-schedules').style.display = t==='schedules' ? '' : 'none';
+  document.querySelectorAll('#view-admin .tab-bar .tab').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(t==='schedules') loadSchedules();
+}
+
+function addHave() {
+  const v=document.getElementById('have-input').value.trim().toUpperCase();
+  if(!v)return;
+  tempHave.push(v);
+  document.getElementById('have-input').value='';
+  renderList('have-list',tempHave,'H');
+}
+function addNeed() {
+  const v=document.getElementById('need-input').value.trim().toUpperCase();
+  if(!v)return;
+  tempNeed.push(v);
+  document.getElementById('need-input').value='';
+  renderList('need-list',tempNeed,'N');
+}
+function renderList(elId, arr, type) {
+  const el=document.getElementById(elId);
+  if(!arr.length){el.innerHTML='';return;}
+  el.innerHTML=arr.map((x,i)=>`<div class="list-item"><span class="pill ${type==='H'?'pill-green':'pill-purple'}">${x}</span><button class="del-btn" onclick="del${type==='H'?'Have':'Need'}(${i})">×</button></div>`).join('');
+}
+function delHave(i){tempHave.splice(i,1);renderList('have-list',tempHave,'H');}
+function delNeed(i){tempNeed.splice(i,1);renderList('need-list',tempNeed,'N');}
+
+async function submitMaterials() {
+  const name=document.getElementById('s-name').value.trim();
+  if(!name){alert('Enter your name.');return;}
+  if(!tempHave.length&&!tempNeed.length){alert('Add at least one course.');return;}
+  localMaterials[name]={have:[...tempHave],need:[...tempNeed],ts:Date.now()};
+  await saveToStorage(STORAGE_KEY_MAT, localMaterials);
+  tempHave=[];tempNeed=[];
+  renderList('have-list',[],'H');renderList('need-list',[],'N');
+  const el=document.getElementById('mat-success');
+  el.style.display='';
+  el.textContent=`Saved! Your materials have been submitted, ${name.split(' ')[0]}. ΛΧΑ`;
+  document.getElementById('s-name').value='';
+}
+
+function addClass() {
+  const course=document.getElementById('sched-course').value.trim().toUpperCase();
+  const section=document.getElementById('sched-section').value.trim();
+  const prof=document.getElementById('sched-prof').value.trim();
+  if(!course||!section||!prof){alert('Fill all class fields.');return;}
+  tempClasses.push({course,section,prof});
+  document.getElementById('sched-course').value='';
+  document.getElementById('sched-section').value='';
+  document.getElementById('sched-prof').value='';
+  renderClassList();
+}
+function renderClassList() {
+  const el=document.getElementById('class-list');
+  if(!tempClasses.length){el.innerHTML='';return;}
+  el.innerHTML=tempClasses.map((c,i)=>`<div class="list-item"><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;"><span class="pill pill-purple">${c.course}</span><span class="tag">§${c.section}</span><span style="font-size:12px;color:var(--color-text-secondary);">Prof. ${c.prof}</span></div><button class="del-btn" onclick="delClass(${i})">×</button></div>`).join('');
+}
+function delClass(i){tempClasses.splice(i,1);renderClassList();}
+
+async function submitSchedule() {
+  const name=document.getElementById('s-name-sched').value.trim();
+  if(!name){alert('Enter your name.');return;}
+  if(!tempClasses.length){alert('Add at least one class.');return;}
+  localSchedules[name]=[...tempClasses];
+  await saveToStorage(STORAGE_KEY_SCHED, localSchedules);
+  tempClasses=[];renderClassList();
+  const el=document.getElementById('sched-success');
+  el.style.display='';
+  el.textContent=`Schedule saved, ${name.split(' ')[0]}! See you at chapter.`;
+  document.getElementById('s-name-sched').value='';
+}
+
+async function loadAdminData() {
+  localMaterials = await loadFromStorage(STORAGE_KEY_MAT);
+  renderAdminMatches();
+}
+
+function renderAdminMatches() {
+  const el=document.getElementById('admin-matches');
+  const names=Object.keys(localMaterials);
+  if(!names.length){el.innerHTML='<div class="empty">No members have submitted materials yet.</div>';return;}
+  const cg={};
+  names.forEach(name=>{
+    (localMaterials[name].need||[]).forEach(c=>{if(!cg[c])cg[c]={seekers:[],providers:[]};cg[c].seekers.push(name);});
+    (localMaterials[name].have||[]).forEach(c=>{if(!cg[c])cg[c]={seekers:[],providers:[]};cg[c].providers.push(name);});
+  });
+  const courses=Object.keys(cg).sort();
+  let html='';
+  courses.forEach(course=>{
+    const g=cg[course];
+    const hasMatch=g.seekers.length&&g.providers.length;
+    html+=`<div style="margin-bottom:14px;">
+      <div class="group-hdr">${course} ${hasMatch?'<span class="pill pill-green">Match</span>':'<span class="pill pill-amber">Pending</span>'}</div>`;
+    if(g.providers.length) html+=`<div style="margin-bottom:5px;font-size:11px;color:var(--color-text-secondary);">Has: ${g.providers.map(n=>`<span class="tag">${n}</span>`).join('')}</div>`;
+    if(g.seekers.length) html+=`<div style="margin-bottom:5px;font-size:11px;color:var(--color-text-secondary);">Needs: ${g.seekers.map(n=>`<span class="tag">${n}</span>`).join('')}</div>`;
+    if(hasMatch){
+      html+=`<div style="padding-top:6px;border-top:0.5px solid var(--color-border-tertiary);">`;
+      g.seekers.forEach(seeker=>{
+        g.providers.forEach(provider=>{
+          html+=`<div class="match-row">
+            <div class="avatar">${seeker.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+            <span style="font-size:12px;">${seeker}</span>
+            <span style="color:var(--color-text-tertiary);font-size:14px;">←</span>
+            <div class="avatar" style="background:#E1F5EE;color:#085041;">${provider.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+            <span style="font-size:12px;">${provider}</span>
+            <span style="font-size:11px;color:var(--color-text-tertiary);margin-left:auto;">${course}</span>
+          </div>`;
+        });
+      });
+      html+=`</div>`;
+    }
+    html+=`</div>`;
+  });
+  el.innerHTML=html;
+}
+
+function generateMessage() {
+  const names=Object.keys(localMaterials);
+  if(!names.length){alert('No data yet.');return;}
+  const cg={};
+  names.forEach(name=>{
+    (localMaterials[name].need||[]).forEach(c=>{if(!cg[c])cg[c]={seekers:[],providers:[]};cg[c].seekers.push(name);});
+    (localMaterials[name].have||[]).forEach(c=>{if(!cg[c])cg[c]={seekers:[],providers:[]};cg[c].providers.push(name);});
+  });
+  const matched={};
+  Object.keys(cg).forEach(course=>{
+    const g=cg[course];
+    if(g.seekers.length&&g.providers.length){
+      g.seekers.forEach(seeker=>{
+        if(!matched[seeker])matched[seeker]=[];
+        matched[seeker].push({course,from:g.providers});
+      });
+    }
+  });
+  let msg="Hey brothers,\n\nHere are your academic material connections:\n\n";
+  Object.keys(matched).forEach(seeker=>{
+    matched[seeker].forEach(({course,from})=>{
+      msg+=`${seeker} — reach out to ${from.join(' or ')} for ${course}\n`;
+    });
+  });
+  const notCovered=Object.keys(cg).filter(c=>!cg[c].providers.length);
+  if(notCovered.length) msg+=`\nStill need someone with: ${notCovered.join(', ')} — let the chapter know if you have these materials.\n`;
+  msg+=`\nΛΧΑ — Per Crucem Crescens`;
+  document.getElementById('admin-msg-section').style.display='';
+  document.getElementById('admin-msg-text').textContent=msg;
+}
+
+function copyMsg(){
+  const txt=document.getElementById('admin-msg-text').textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const btn=event.target;btn.textContent='Copied!';
+    setTimeout(()=>btn.textContent='Copy message',1800);
+  });
+}
+
+async function loadSchedules() {
+  localSchedules = await loadFromStorage(STORAGE_KEY_SCHED);
+  renderAdminSchedules();
+}
+
+function renderAdminSchedules() {
+  const el=document.getElementById('admin-schedule-groups');
+  const names=Object.keys(localSchedules);
+  if(!names.length){el.innerHTML='<div class="empty">No schedules submitted yet.</div>';return;}
+  const sectionMap={};
+  names.forEach(name=>{
+    localSchedules[name].forEach(cls=>{
+      const key=`${cls.course}||${cls.section}||${cls.prof}`;
+      if(!sectionMap[key])sectionMap[key]={course:cls.course,section:cls.section,prof:cls.prof,members:[]};
+      sectionMap[key].members.push(name);
+    });
+  });
+  const sorted=Object.values(sectionMap).sort((a,b)=>a.section!==b.section?a.section.localeCompare(b.section):a.course.localeCompare(b.course));
+  let html='',lastSec=null;
+  sorted.forEach(group=>{
+    if(group.section!==lastSec){
+      if(lastSec!==null)html+=`<div style="height:6px;"></div>`;
+      html+=`<div class="section-label" style="margin-top:8px;">Section ${group.section}</div>`;
+      lastSec=group.section;
+    }
+    html+=`<div class="card" style="margin-bottom:8px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-size:14px;font-weight:700;font-family:'Cinzel',serif;">${group.course}</span>
+          <span class="pill pill-purple">§${group.section}</span>
+        </div>
+        <span style="font-size:12px;color:var(--color-text-secondary);">Prof. ${group.prof}</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        ${group.members.map(m=>`<div style="display:flex;align-items:center;gap:5px;"><div class="avatar" style="width:24px;height:24px;font-size:10px;">${m.split(' ').map(w=>w[0]).join('').slice(0,2)}</div><span style="font-size:12px;">${m}</span></div>`).join('')}
+      </div>
+    </div>`;
+  });
+  el.innerHTML=html;
+}
+</script>
